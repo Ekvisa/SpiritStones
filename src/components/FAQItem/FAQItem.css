@@ -1,0 +1,16 @@
+.faq-item div {
+  max-height: 500px;
+  overflow: hidden;
+  opacity: 1;
+  transition: max-height 1s ease-out, opacity 1s ease-out;
+}
+.faq-item .hidden {
+  max-height: 0px;
+  opacity: 0;
+}
+
+.question:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=FAQItem.css.map */

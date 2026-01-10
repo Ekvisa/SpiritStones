@@ -1,0 +1,19 @@
+@use "../variables" as variables;
+.faq-item {
+  div {
+    max-height: 500px; // hack for transition (it needs a number)
+    overflow: hidden;
+    opacity: 1;
+    transition: max-height 1s ease-out, opacity 1s ease-out;
+  }
+  .hidden {
+    max-height: 0px;
+    opacity: 0;
+  }
+}
+
+.question {
+  &:hover {
+    cursor: pointer;
+  }
+}
