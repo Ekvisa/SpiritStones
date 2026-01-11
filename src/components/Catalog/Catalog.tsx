@@ -11,13 +11,8 @@ type CatalogProps = {
 };
 
 function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
-  // const [cart, setCart] = useState<CartItem[]>([]);
-
-  // const [drinks, setDrinks] = useState<Drink[]>([]);
   const [selectedDrink, setSelectedDrink] = useState<string>("");
-  // const [stoneClasses, setStoneClasses] = useState<StoneClass[]>([]);
   const [selectedClass, setSelectedClass] = useState<string>("");
-  // const [stones, setStones] = useState<Stone[]>([]);
   const [selectedStone, setSelectedStone] = useState<string>("");
   const [selectedSize, setSelectedSize] = useState<number>(0);
 
@@ -50,7 +45,6 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
 
     addToCart(item);
 
-    // сброс формы
     setSelectedDrink("");
     setSelectedClass("");
     setSelectedStone("");
@@ -58,108 +52,118 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
   }
 
   return (
-    <section id="catalog">
-      Catalog
-      <form action="">
-        <fieldset>
-          <label htmlFor="drinks">Напиток:</label>
-          <select
-            id="drinks"
-            name="drinks"
-            value={selectedDrink}
-            onChange={(e) => setSelectedDrink(e.target.value)}
-          >
-            <option value="">не важно</option>
-            {drinks.map((drink) => (
-              <option key={drink.id} value={drink.id}>
-                {drink.name}
-              </option>
-            ))}
-          </select>
-          {currentDrink && (
-            <div className="recommendation">
-              <p>Цель: {currentDrink.recommendation.goal}</p>
-              <p>Рекомендуем:</p>
-              {
-                <ul>
-                  {recommendedStones.map((s) => (
-                    <li key={s.id}>{s.name}</li>
-                  ))}
-                </ul>
-              }
+    <section id="catalog" className="light">
+      <div className="content wrapper">
+        <h2>Каталог</h2>
+        <form action="">
+          <fieldset>
+            <div className="filter">
+              <label htmlFor="drinks">Напиток:</label>
+              <select
+                id="drinks"
+                name="drinks"
+                value={selectedDrink}
+                onChange={(e) => setSelectedDrink(e.target.value)}
+              >
+                <option value="">не важно</option>
+                {drinks.map((drink) => (
+                  <option key={drink.id} value={drink.id}>
+                    {drink.name}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-        </fieldset>
 
-        <fieldset>
-          <label htmlFor="class">Класс камней:</label>
-          <select
-            name="class"
-            id="class"
-            value={selectedClass}
-            onChange={(e) => {
-              setSelectedClass(e.target.value);
-              setSelectedStone("");
-            }}
-          >
-            <option value="">все</option>
-
-            {stoneClasses.map((sc) => (
-              <option key={sc.id} value={sc.id}>
-                {sc.name}
-              </option>
-            ))}
-          </select>
-          {currentClass && (
-            <div className="description">
-              <p>{currentClass.description}</p>
-              <p>Цена: {currentClass.price} ю. за тройку</p>
-            </div>
-          )}
-        </fieldset>
-
-        <fieldset>
-          <label htmlFor="stones">Камень:</label>
-          <select
-            id="stones"
-            name="stones"
-            value={selectedStone}
-            onChange={(e) => {
-              const stoneId = e.target.value;
-              setSelectedStone(stoneId);
-              const stone = stones.find((s) => s.id === stoneId);
-              if (stone) {
-                setSelectedClass(stone.class);
-              }
-            }}
-          >
-            {selectedClass ? (
-              <option value="">Случайные из класса</option>
-            ) : (
-              <option value="">-- Выберите камень --</option>
+            {currentDrink && (
+              <div className="details">
+                <p>Цель: {currentDrink.recommendation.goal}</p>
+                <p>Рекомендуем:</p>
+                {
+                  <ul>
+                    {recommendedStones.map((s) => (
+                      <li key={s.id}>{s.name}</li>
+                    ))}
+                  </ul>
+                }
+              </div>
             )}
-            {filteredStones.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-                {isStoneRecommended(s.id) && "⭐ "}
-              </option>
-            ))}
-          </select>
-          <div className="description">
+          </fieldset>
+
+          <fieldset>
+            <div className="filter">
+              <label htmlFor="class">Класс камней:</label>
+              <select
+                name="class"
+                id="class"
+                value={selectedClass}
+                onChange={(e) => {
+                  setSelectedClass(e.target.value);
+                  setSelectedStone("");
+                }}
+              >
+                <option value="">все</option>
+
+                {stoneClasses.map((sc) => (
+                  <option key={sc.id} value={sc.id}>
+                    {sc.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {currentClass && (
+              <div className="details">
+                <p>{currentClass.description}</p>
+                <p>Цена: {currentClass.price} &curren; за тройку</p>
+              </div>
+            )}
+          </fieldset>
+
+          <fieldset>
+            <div className="filter">
+              <label htmlFor="stones">Камень:</label>
+              <select
+                id="stones"
+                name="stones"
+                value={selectedStone}
+                onChange={(e) => {
+                  const stoneId = e.target.value;
+                  setSelectedStone(stoneId);
+                  const stone = stones.find((s) => s.id === stoneId);
+                  if (stone) {
+                    setSelectedClass(stone.class);
+                  }
+                }}
+              >
+                {selectedClass ? (
+                  <option value="">Случайные из класса</option>
+                ) : (
+                  <option value="">-- Выберите камень --</option>
+                )}
+                {filteredStones.map((s) => (
+                  <option key={s.id} value={s.id}>
+                    {s.name}
+                    {isStoneRecommended(s.id) && "⭐ "}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             {currentStone ? (
-              <>
+              <div className="details specificstone">
                 <img
                   src={`/pics/stones/${currentStone.id}.jpg`}
                   alt={currentStone.name}
                 />
-                <p>{currentStone.description}</p>
                 <p>
-                  {isStoneRecommended(currentStone.id) &&
-                    "⭐ Идеально подходит к выбранному напитку"}
+                  {currentStone.description}
+                  {isStoneRecommended(currentStone.id) && (
+                    <span> ⭐ Идеально подходит к выбранному напитку </span>
+                  )}
                 </p>
-              </>
+              </div>
             ) : selectedClass ? (
-              <>
+              <div className="details">
                 <p>
                   Случайная комбинация камней из класса &laquo;
                   {currentClass?.name}
@@ -174,42 +178,44 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
                   Если хотите узнать больше о конкретном камне, выберите его в
                   списке.
                 </p>
-              </>
+              </div>
             ) : (
               ""
             )}
-          </div>
-        </fieldset>
+          </fieldset>
 
-        <fieldset>
-          <label htmlFor="type">Размер набора:</label>
-          <select
-            name="type"
-            id="type"
-            value={selectedSize}
-            onChange={(e) => setSelectedSize(+e.target.value)}
-          >
-            <option value="">-- Выберите размер набора --</option>
-            <option value="3">3 - тихий вечер</option>
-            <option value="6">6 - уютный разговор</option>
-            <option value="9">9 - для компании</option>
-          </select>
-        </fieldset>
-        <p>
-          Выбрано:{" "}
-          {currentStone
-            ? currentStone.name
-            : currentClass
-            ? currentClass.name
-            : ""}
-          , {selectedSize} шт.
-        </p>
-        <p>Цена набора: {totalPrice} ю.</p>
+          <fieldset>
+            <div className="filter">
+              <label htmlFor="type">Размер набора:</label>
+              <select
+                name="type"
+                id="type"
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(+e.target.value)}
+              >
+                <option value="">-- Выберите размер набора --</option>
+                <option value="3">3 - тихий вечер</option>
+                <option value="6">6 - уютный разговор</option>
+                <option value="9">9 - для компании</option>
+              </select>
+            </div>
+          </fieldset>
+          <p>
+            Выбрано:{" "}
+            {currentStone
+              ? currentStone.name
+              : currentClass
+              ? currentClass.name
+              : ""}
+            , {selectedSize} шт.
+          </p>
+          <p>Цена набора: {totalPrice} &curren;</p>
 
-        <button type="button" onClick={handleAddToCart}>
-          В корзину
-        </button>
-      </form>
+          <button type="button" onClick={handleAddToCart}>
+            В корзину
+          </button>
+        </form>
+      </div>
     </section>
   );
 }

@@ -3,8 +3,13 @@ body {
   font-family: "verdana", sans-serif;
 }
 
+a {
+  color: inherit;
+}
+
 section {
   overflow: hidden;
+  padding-bottom: 3em;
 }
 section.dark {
   background-color: #6b6e5d;

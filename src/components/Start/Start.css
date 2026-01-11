@@ -55,6 +55,7 @@
   color: #e6e8e5;
   font-size: 4em;
   margin: 0.5em 0;
+  line-height: normal;
 }
 .hero .content header h2 {
   font-family: "Georgia", serif;
@@ -69,18 +70,9 @@
   margin: 3em 0 6em;
 }
 .hero .content header button {
-  background: #3a3f3b;
-  color: #c6cac4;
   font-family: "Georgia", serif;
   font-style: italic;
   font-size: 1em;
-  padding: 1em;
-  border: none;
-  cursor: pointer;
-}
-.hero .content header button:hover {
-  background: #404642;
-  color: #e6e8e5;
 }
 
 /*# sourceMappingURL=Start.css.map */

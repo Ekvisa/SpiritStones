@@ -30,7 +30,12 @@ function Start() {
             <br />
             Для напитков с характером. Для моментов со смыслом.
           </p>
-          <button>Выбрать набор</button>
+          <button
+            type="button"
+            onClick={() => document.getElementById("catalog")?.scrollIntoView()}
+          >
+            Выбрать набор
+          </button>
         </header>
       </div>
     </section>

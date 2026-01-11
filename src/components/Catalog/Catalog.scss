@@ -1,1 +1,42 @@
 @use "../variables" as variables;
+
+fieldset {
+  padding: 1em 5%;
+}
+
+.details {
+  opacity: 0;
+  animation: css-animation-fadeInUp 1s ease-out forwards;
+}
+
+@keyframes css-animation-fadeInUp {
+  to {
+    opacity: 1;
+  }
+}
+
+.specificstone {
+  display: flex;
+  gap: 10%;
+  justify-content: center;
+
+  margin: 1em 0;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+  @media (max-width: 600px) {
+    align-items: center;
+  }
+  img {
+    border-radius: 50%;
+    max-width: 50%;
+    @media (max-width: 600px) {
+      max-width: 100%;
+    }
+  }
+  span {
+    display: block;
+    font-size: 0.85em;
+    margin: 0.5em 0;
+  }
+}

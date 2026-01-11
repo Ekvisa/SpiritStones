@@ -68,6 +68,7 @@
         color: variables.$color-light-cold;
         font-size: 4em;
         margin: 0.5em 0;
+        line-height: normal;
       }
       h2 {
         font-family: "Georgia", serif;
@@ -81,20 +82,27 @@
         line-height: 2em;
         margin: 3em 0 6em;
       }
+
       button {
-        background: #3a3f3b;
-        color: variables.$color-light-warm;
         font-family: "Georgia", serif;
         font-style: italic;
         font-size: 1em;
-        padding: 1em;
-        border: none;
-        cursor: pointer;
-        &:hover {
-          background: #404642;
-          color: variables.$color-light-cold;
-        }
       }
+
+      // button {
+      //   background: #3a3f3b;
+      //   color: variables.$color-light-warm;
+      //   font-family: "Georgia", serif;
+      //   font-style: italic;
+      //   font-size: 1em;
+      //   padding: 1em;
+      //   border: none;
+      //   cursor: pointer;
+      //   &:hover {
+      //     background: #404642;
+      //     color: variables.$color-light-cold;
+      //   }
+      // }
     }
   }
 }

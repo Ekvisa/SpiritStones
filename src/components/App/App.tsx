@@ -11,27 +11,8 @@ import { Stone, StoneClass, Drink, CartItem } from "../../types";
 function App() {
   const [stones, setStones] = useState<Stone[]>([]);
   const [stoneClasses, setStoneClasses] = useState<StoneClass[]>([]);
-  // const [selectedClass, setSelectedClass] = useState<string>("");
   const [cart, setCart] = useState<CartItem[]>([]);
-  // const [selectedStone, setSelectedStone] = useState<string>("");
-  // const [selectedSize, setSelectedSize] = useState<number>();
   const [drinks, setDrinks] = useState<Drink[]>([]);
-  //   const [selectedDrink, setSelectedDrink] = useState<string>("");
-  //   const currentDrink = drinks.find((d) => d.id === selectedDrink);
-
-  // const currentStone = stones.find((s) => s.id === selectedStone);
-  //  const currentClass = stoneClasses.find((s) => s.id === selectedClass);
-
-  //    const recommendedStones = currentDrink
-  //   ? stones.filter((s) => currentDrink.recommendation.stones.includes(s.id))
-  //   : [];
-  // const isStoneRecommended = (id: string): boolean =>
-  //   !!currentDrink?.recommendation.stones.includes(id);
-  // const filteredStones = selectedClass
-  //   ? stones.filter((s) => s.class === selectedClass)
-  //   : stones;
-  // const totalPrice =
-  //   selectedSize && currentClass ? (selectedSize / 3) * currentClass.price : 0;
 
   useEffect(() => {
     fetch("http://localhost:3002/stones")
