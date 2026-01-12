@@ -14,16 +14,19 @@ function App() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [drinks, setDrinks] = useState<Drink[]>([]);
 
+  const PATH = "https://spiritstones.onrender.com";
+  // "http://localhost:3002";
+
   useEffect(() => {
-    fetch("http://localhost:3002/stones")
+    fetch(`${PATH}/stones`)
       .then((r) => r.json())
       .then(setStones);
 
-    fetch("http://localhost:3002/stoneClasses")
+    fetch(`${PATH}/stoneClasses`)
       .then((r) => r.json())
       .then(setStoneClasses);
 
-    fetch("http://localhost:3002/drinks")
+    fetch(`${PATH}/drinks`)
       .then((res) => res.json())
       .then((data) => setDrinks(data));
   }, []);
