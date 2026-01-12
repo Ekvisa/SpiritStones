@@ -2,6 +2,25 @@
 
 fieldset {
   padding: 1em 5%;
+  background: #c6cac4;
+  border: none;
+  margin: 1em 0;
+  .filter {
+    font-size: 1.2em;
+    display: flex;
+    gap: 1em;
+    font-weight: bold;
+  }
+  select {
+    background: transparent;
+    border: 1px solid gray;
+    &:focus {
+      border: 1px solid red;
+    }
+    &:active {
+      border: 1px solid red;
+    }
+  }
 }
 
 .details {

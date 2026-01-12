@@ -1,5 +1,24 @@
 fieldset {
   padding: 1em 5%;
+  background: #c6cac4;
+  border: none;
+  margin: 1em 0;
+}
+fieldset .filter {
+  font-size: 1.2em;
+  display: flex;
+  gap: 1em;
+  font-weight: bold;
+}
+fieldset select {
+  background: transparent;
+  border: 1px solid gray;
+}
+fieldset select:focus {
+  border: 1px solid red;
+}
+fieldset select:active {
+  border: 1px solid red;
 }
 
 .details {
