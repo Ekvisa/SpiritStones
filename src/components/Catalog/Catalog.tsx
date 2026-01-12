@@ -152,7 +152,8 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
             {currentStone ? (
               <div className="details specificstone">
                 <img
-                  src={`/pics/stones/${currentStone.id}.jpg`}
+                  //src={`/pics/stones/${currentStone.id}.jpg`}
+                  src={`${process.env.PUBLIC_URL}/pics/stones/${currentStone.id}.jpg`}
                   alt={currentStone.name}
                 />
                 <p>

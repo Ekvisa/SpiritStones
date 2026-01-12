@@ -15,10 +15,7 @@ fieldset {
     background: transparent;
     border: 1px solid gray;
     &:focus {
-      border: 1px solid red;
-    }
-    &:active {
-      border: 1px solid red;
+      // border: inherit;
     }
   }
 }
