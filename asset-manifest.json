@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/SpiritStones/static/css/main.c23772d3.css",
-    "main.js": "/SpiritStones/static/js/main.a8297196.js",
+    "main.css": "/SpiritStones/static/css/main.114939cf.css",
+    "main.js": "/SpiritStones/static/js/main.689c37ac.js",
     "static/js/453.6ee89f2e.chunk.js": "/SpiritStones/static/js/453.6ee89f2e.chunk.js",
     "static/media/bg2.jpg": "/SpiritStones/static/media/bg2.b2c95d78208ab87aff27.jpg",
     "index.html": "/SpiritStones/index.html",
-    "main.c23772d3.css.map": "/SpiritStones/static/css/main.c23772d3.css.map",
-    "main.a8297196.js.map": "/SpiritStones/static/js/main.a8297196.js.map",
+    "main.114939cf.css.map": "/SpiritStones/static/css/main.114939cf.css.map",
+    "main.689c37ac.js.map": "/SpiritStones/static/js/main.689c37ac.js.map",
     "453.6ee89f2e.chunk.js.map": "/SpiritStones/static/js/453.6ee89f2e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c23772d3.css",
-    "static/js/main.a8297196.js"
+    "static/css/main.114939cf.css",
+    "static/js/main.689c37ac.js"
   ]
 }
