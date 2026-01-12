@@ -1,16 +1,22 @@
 import React, { useState } from "react";
-import { CartItem, Stone, StoneClass } from "../../types";
+import { CartItem, Stone, StoneClass, CartProps } from "../../types";
 
 import "./Cart.css";
 
-type CartProps = {
-  cart: CartItem[];
-  stones: Stone[];
-  stoneClasses: StoneClass[];
-  removeFromCart: (id: CartItem["id"]) => void;
-};
+// type CartProps = {
+//   cart: CartItem[];
+//   stones: Stone[];
+//   stoneClasses: StoneClass[];
+//   removeFromCart: (id: CartItem["id"]) => void;
+// };
 
-function Cart({ cart, stones, stoneClasses, removeFromCart }: CartProps) {
+function Cart({
+  cart,
+  stones,
+  stoneClasses,
+  removeFromCart,
+  placeOrder,
+}: CartProps) {
   return (
     <section id="cart" className="light">
       <div className="content wrapper">
@@ -26,7 +32,7 @@ function Cart({ cart, stones, stoneClasses, removeFromCart }: CartProps) {
             return (
               <li key={item.id}>
                 {stone ? stone.name : stoneClass?.name}, {item.size} шт.:{" "}
-                {item.price} ю.
+                {item.price} &curren;
                 <button onClick={() => removeFromCart(item.id)}>✕</button>
               </li>
             );
@@ -38,7 +44,9 @@ function Cart({ cart, stones, stoneClasses, removeFromCart }: CartProps) {
             Всего: {cart.reduce((sum, i) => sum + i.price, 0)} &curren;
           </strong>
         </p>
-        <button>Сделать заказ</button>
+        <button type="button" onClick={placeOrder}>
+          Сделать заказ
+        </button>
       </div>
     </section>
   );

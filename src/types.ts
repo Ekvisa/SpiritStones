@@ -23,3 +23,18 @@ export type CartItem = {
   size: number;
   price: number;
 };
+
+export type CartProps = {
+  cart: CartItem[];
+  stones: Stone[];
+  stoneClasses: StoneClass[];
+  removeFromCart: (id: CartItem["id"]) => void;
+  placeOrder: () => void;
+};
+
+export type Order = CartItem[];
+
+export type OrderModalProps = {
+  order: Order;
+  onClose: () => void;
+};
