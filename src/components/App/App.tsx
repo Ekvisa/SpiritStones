@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { JSX, ReactNode, useEffect, useState } from "react";
 import Start from "../Start/Start";
 import About from "../About/About";
 import Catalog from "../Catalog/Catalog";
 import FAQ from "../FAQ/FAQ";
 import Cart from "../Cart/Cart";
 import Modal from "../Modal/Modal";
+import Orders from "../Orders/Orders";
 import "./App.css";
 
 import { Stone, StoneClass, Drink, CartItem } from "../../types";
@@ -26,7 +27,8 @@ function App() {
   };
 
   const PATH = "https://spiritstones.onrender.com";
-  // "http://localhost:3002";
+  //"http://localhost:3001";
+  //
 
   useEffect(() => {
     fetch(`${PATH}/stones`)
@@ -50,6 +52,47 @@ function App() {
     setCart((prev) => prev.filter((i) => i.id !== id));
   };
 
+  function getRandomEmoji(stoneClass: string): string {
+    const filteredStones: Stone[] = stones.filter(
+      (s) => s.class === stoneClass && s.emoji
+    );
+    if (filteredStones.length === 0) {
+      return "🌚";
+    }
+    const randomFilteredStone =
+      filteredStones[Math.floor(Math.random() * filteredStones.length)];
+    return randomFilteredStone.emoji;
+  }
+
+  function getCartItemImage(cartItem: CartItem): JSX.Element {
+    const emojisSet: string[] = [];
+
+    if (cartItem.stoneId) {
+      console.log(cartItem.stoneId);
+      const stone = stones.find((s) => s.id === cartItem.stoneId);
+      console.log(stone);
+      const emoji = stone?.emoji || "◼️";
+      console.log(stone?.emoji);
+      for (let i = 0; i < cartItem.size; i++) {
+        emojisSet.push(emoji);
+      }
+    } else {
+      for (let i = 0; i < cartItem.size; i++) {
+        emojisSet.push(getRandomEmoji(cartItem.classId));
+      }
+    }
+
+    return <p>{emojisSet}</p>;
+  }
+
+  function getOrderImage(order: CartItem[]): JSX.Element {
+    return (
+      <div className="orderImage">
+        {order.map((item) => getCartItemImage(item))}
+      </div>
+    );
+  }
+
   return (
     <>
       <Start />
@@ -70,7 +113,11 @@ function App() {
         placeOrder={placeOrder}
       />
       {isModalOpen && (
-        <Modal order={lastOrder} onClose={() => setModalOpen(false)} />
+        <Modal
+          order={lastOrder}
+          getOrderImage={() => getOrderImage(lastOrder)}
+          onClose={() => setModalOpen(false)}
+        />
       )}
     </>
   );

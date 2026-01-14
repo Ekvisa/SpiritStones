@@ -8,10 +8,33 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  p {
+  .popup {
     background: white;
-    border-radius: 2em;
     padding: 1em;
     box-shadow: 0 0 20px white;
+    background: white;
+    padding: 3em;
+    box-shadow: 0 0 20px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    max-width: 550px;
+    p {
+      margin: 0;
+    }
+    .phrase {
+      font-family: "georgia";
+      font-style: italic;
+      color: #8d8d5f;
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 1em;
+    }
+    .orderedStones {
+      text-align: center;
+      border: 1px solid gray;
+      padding: 1em;
+    }
   }
 }

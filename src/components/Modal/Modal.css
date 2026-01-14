@@ -7,11 +7,34 @@
   justify-content: center;
   z-index: 1;
 }
-.cover p {
+.cover .popup {
   background: white;
-  border-radius: 2em;
   padding: 1em;
   box-shadow: 0 0 20px white;
+  background: white;
+  padding: 3em;
+  box-shadow: 0 0 20px white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+  max-width: 550px;
+}
+.cover .popup p {
+  margin: 0;
+}
+.cover .popup .phrase {
+  font-family: "georgia";
+  font-style: italic;
+  color: #8d8d5f;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.cover .popup .orderedStones {
+  text-align: center;
+  border: 1px solid gray;
+  padding: 1em;
 }
 
 /*# sourceMappingURL=Modal.css.map */

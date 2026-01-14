@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import { CartItem, Stone, StoneClass, CartProps } from "../../types";
+import { CartProps } from "../../types";
 
 import "./Cart.css";
-
-// type CartProps = {
-//   cart: CartItem[];
-//   stones: Stone[];
-//   stoneClasses: StoneClass[];
-//   removeFromCart: (id: CartItem["id"]) => void;
-// };
 
 function Cart({
   cart,
