@@ -12,7 +12,7 @@ function Start() {
               <a href="#about">О проекте</a>
             </li>
             <li>
-              <a href="#catalog">Каталог</a>
+              <a href="#catalog">Заказать</a>
             </li>
             <li>
               <a href="#faq">FAQ</a>

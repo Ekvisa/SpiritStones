@@ -9,5 +9,9 @@ button:hover {
   background: #404642;
   color: #e6e8e5;
 }
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
 /*# sourceMappingURL=App.css.map */

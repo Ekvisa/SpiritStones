@@ -3,14 +3,15 @@
 button {
   background: #3a3f3b;
   color: variables.$color-light-warm;
-  //   font-family: "Georgia", serif;
-  //   font-style: italic;
-  //   font-size: 1em;
   padding: 1em;
   border: none;
   cursor: pointer;
   &:hover {
     background: #404642;
     color: variables.$color-light-cold;
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 }

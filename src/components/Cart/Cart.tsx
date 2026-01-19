@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { CartItem, Stone, StoneClass } from "../../types";
 
 import "./Cart.css";
@@ -19,9 +18,9 @@ function Cart({
   placeOrder,
 }: CartProps) {
   return (
-    <section id="cart" className="light">
+    <section id="cart" className="dark">
       <div className="content wrapper">
-        <h2>Наборы в корзине:</h2>
+        <h2>Корзина</h2>
 
         {cart.length === 0 && <p>Корзина пуста</p>}
 
@@ -45,7 +44,7 @@ function Cart({
             Всего: {cart.reduce((sum, i) => sum + i.price, 0)} &curren;
           </strong>
         </p>
-        <button type="button" onClick={placeOrder}>
+        <button type="button" onClick={placeOrder} disabled={cart.length === 0}>
           Сделать заказ
         </button>
       </div>

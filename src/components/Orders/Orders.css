@@ -1,7 +1,9 @@
 .order {
-  border-bottom: 1px solid gray;
   padding: 0 0 1em 0;
   margin: 2em 0 0;
+}
+.order:not(:last-child) {
+  border-bottom: 1px solid gray;
 }
 
 /*# sourceMappingURL=Orders.css.map */

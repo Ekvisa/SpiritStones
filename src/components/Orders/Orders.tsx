@@ -1,4 +1,4 @@
-import React, { JSX, useState } from "react";
+import { JSX } from "react";
 // import { Order } from "../../types";
 import { Order, CartItem } from "../../types";
 
@@ -14,6 +14,7 @@ function Orders({ orders, getOrderImage }: OrdersProps) {
     <section className="light">
       <div className="content wrapper">
         <h2>Заказы</h2>
+        {orders.length === 0 && <p>Заказов пока нет</p>}
 
         {orders.map((order, i) => (
           <div key={order.id} className="order">

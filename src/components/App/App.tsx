@@ -124,8 +124,6 @@ function App() {
     };
 
     setPendingOrder(newOrder);
-    // setOrders((prev) => [...prev, newOrder]);
-    // setCart([]);
     setModalOpen(true);
   };
 

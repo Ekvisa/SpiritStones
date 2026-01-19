@@ -30,6 +30,8 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
   const totalPrice =
     selectedSize && currentClass ? (selectedSize / 3) * currentClass.price : 0;
 
+  const selectedName = currentStone?.name ?? currentClass?.name ?? "";
+
   function handleAddToCart() {
     if (!selectedClass || !selectedSize || !currentClass) return;
 
@@ -54,7 +56,7 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
   return (
     <section id="catalog" className="light">
       <div className="content wrapper">
-        <h2>Каталог</h2>
+        <h2>Подбор камней</h2>
         <form action="">
           <fieldset>
             <div className="filter">
@@ -152,7 +154,6 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
             {currentStone ? (
               <div className="details specificstone">
                 <img
-                  //src={`/pics/stones/${currentStone.id}.jpg`}
                   src={`${process.env.PUBLIC_URL}/pics/stones/${currentStone.id}.jpg`}
                   alt={currentStone.name}
                 />
@@ -202,17 +203,15 @@ function Catalog({ drinks, stones, stoneClasses, addToCart }: CatalogProps) {
             </div>
           </fieldset>
           <p>
-            Выбрано:{" "}
-            {currentStone
-              ? currentStone.name
-              : currentClass
-              ? currentClass.name
-              : ""}
-            , {selectedSize} шт.
+            Выбрано: {selectedName}, {selectedSize} шт.
           </p>
           <p>Цена набора: {totalPrice} &curren;</p>
 
-          <button type="button" onClick={handleAddToCart}>
+          <button
+            type="button"
+            onClick={handleAddToCart}
+            disabled={!selectedClass || !selectedSize}
+          >
             В корзину
           </button>
         </form>
