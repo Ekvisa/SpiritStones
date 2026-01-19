@@ -1,33 +1,27 @@
-import React, { useState } from "react";
+import React, { JSX, useState } from "react";
 // import { Order } from "../../types";
-import { CartItem } from "../../types";
+import { Order, CartItem } from "../../types";
 
 import "./Orders.css";
 
-function Orders(allOrders: CartItem[][]) {
+type OrdersProps = {
+  orders: Order[];
+  getOrderImage: (items: CartItem[]) => JSX.Element;
+};
+
+function Orders({ orders, getOrderImage }: OrdersProps) {
   return (
-    <section id="orders" className="light">
+    <section className="light">
       <div className="content wrapper">
-        <h2>Заказы:</h2>
-        {allOrders[0][0].id}
-        {allOrders[0][0].size}
+        <h2>Заказы</h2>
 
-        {allOrders.length === 0 && <p>No orders</p>}
-
-        {/* <ul>
-          {allOrders.map((item) => {
-            const stone = stones.find((s) => s.id === item.stoneId);
-            const stoneClass = stoneClasses.find((c) => c.id === item.classId);
-
-            return (
-              <li key={item.id}>
-                {stone ? stone.name : stoneClass?.name}, {item.size} шт.:{" "}
-                {item.price} &curren;
-                <button onClick={() => removeFromCart(item.id)}>✕</button>
-              </li>
-            );
-          })}
-        </ul> */}
+        {orders.map((order, i) => (
+          <div key={order.id} className="order">
+            <h4>#{i + 1}:</h4>
+            <p className="phrase">{order.phrase}</p>
+            {getOrderImage(order.items)}
+          </div>
+        ))}
       </div>
     </section>
   );

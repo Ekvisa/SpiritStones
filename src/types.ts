@@ -1,5 +1,3 @@
-import { JSX } from "react";
-
 export type Stone = {
   id: string;
   name: string;
@@ -27,18 +25,8 @@ export type CartItem = {
   price: number;
 };
 
-export type CartProps = {
-  cart: CartItem[];
-  stones: Stone[];
-  stoneClasses: StoneClass[];
-  removeFromCart: (id: CartItem["id"]) => void;
-  placeOrder: () => void;
-};
-
-// export type Order = CartItem[];
-
-export type OrderModalProps = {
-  order: CartItem[];
-  getOrderImage: () => JSX.Element;
-  onClose: () => void;
+export type Order = {
+  id: string;
+  items: CartItem[];
+  phrase: string;
 };

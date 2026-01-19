@@ -8,23 +8,17 @@ import Modal from "../Modal/Modal";
 import Orders from "../Orders/Orders";
 import "./App.css";
 
-import { Stone, StoneClass, Drink, CartItem } from "../../types";
+import { Stone, StoneClass, Drink, CartItem, Order } from "../../types";
 
 function App() {
   const [stones, setStones] = useState<Stone[]>([]);
   const [stoneClasses, setStoneClasses] = useState<StoneClass[]>([]);
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [drinks, setDrinks] = useState<Drink[]>([]);
 
   const [isModalOpen, setModalOpen] = useState(false);
-  const [lastOrder, setLastOrder] = useState<CartItem[]>([]);
-
-  const placeOrder = () => {
-    if (cart.length === 0) return;
-    setLastOrder(cart);
-    setCart([]);
-    setModalOpen(true);
-  };
+  const [pendingOrder, setPendingOrder] = useState<Order | null>(null);
 
   const PATH = "https://spiritstones.onrender.com";
   //"http://localhost:3001";
@@ -51,6 +45,33 @@ function App() {
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((i) => i.id !== id));
   };
+
+  const phrases = [
+    "Камни не спешат и всё равно доходят до своего места",
+    "Природа не объясняет себя. Она просто работает.",
+    "Пусть в этом сочетании будет равновесие.",
+    "Даже самый простой камень — результат долгого пути",
+    "Надёжность не обязана быть громкой",
+    "Иногда устойчивость — это самый редкий ресурс",
+    "То, что кажется неподвижным, просто движется очень медленно",
+    "Прочность — это история, рассказанная без слов",
+    "Сила — это не напряжение, а умение оставаться собой",
+    "Твёрдость не противоречит спокойствию",
+    "Вечность складывается из множества мгновений",
+    "Устойчивость — это тихая форма силы",
+    "Даже самые прочные вещи когда-то были мягкими",
+    "Форма появляется там, где есть терпение",
+    "Камень помнит больше, чем может рассказать",
+    "То, что кажется простым, часто результат долгой работы",
+    "Иногда достаточно не сдвигаться, чтобы всё вокруг изменилось",
+    "Прочность начинается с внутреннего равновесия",
+    "Камни — это память земли",
+  ];
+
+  function randomPhrase(array: string[]): string {
+    const index = Math.floor(Math.random() * array.length);
+    return array[index];
+  }
 
   function getRandomEmoji(stoneClass: string): string {
     const filteredStones: Stone[] = stones.filter(
@@ -93,6 +114,30 @@ function App() {
     );
   }
 
+  const placeOrder = () => {
+    if (cart.length === 0) return;
+
+    const newOrder: Order = {
+      id: crypto.randomUUID(),
+      items: cart,
+      phrase: randomPhrase(phrases),
+    };
+
+    setPendingOrder(newOrder);
+    // setOrders((prev) => [...prev, newOrder]);
+    // setCart([]);
+    setModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    if (!pendingOrder) return;
+
+    setOrders((prev) => [...prev, pendingOrder]);
+    setCart([]);
+    setPendingOrder(null);
+    setModalOpen(false);
+  };
+
   return (
     <>
       <Start />
@@ -104,7 +149,6 @@ function App() {
         stoneClasses={stoneClasses}
         addToCart={addToCart}
       />
-
       <Cart
         cart={cart}
         stones={stones}
@@ -112,13 +156,15 @@ function App() {
         removeFromCart={removeFromCart}
         placeOrder={placeOrder}
       />
-      {isModalOpen && (
+      {isModalOpen && pendingOrder && (
         <Modal
-          order={lastOrder}
-          getOrderImage={() => getOrderImage(lastOrder)}
-          onClose={() => setModalOpen(false)}
+          order={pendingOrder}
+          getOrderImage={getOrderImage}
+          onClose={handleModalClose}
         />
       )}
+
+      <Orders orders={orders} getOrderImage={getOrderImage} />
     </>
   );
 }
