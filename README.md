@@ -1,6 +1,6 @@
 ## Spirit Stones
 A small React app that simulates a shop of custom cooling stones for drinks, with recommendations, mood-based selection and a playful ordering flow.\
-**Live demo**: https://ekvisa.github.io/your-project
+**Live demo**: https://ekvisa.github.io/SpiritStones/
 
 ### Concept
 The idea came from noticing that most whiskey stones look the same. What if cooling stones could have different characters and fit different drinks?\
