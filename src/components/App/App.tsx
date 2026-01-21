@@ -1,4 +1,4 @@
-import React, { JSX, ReactNode, useEffect, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import Start from "../Start/Start";
 import About from "../About/About";
 import Catalog from "../Catalog/Catalog";
@@ -136,6 +136,13 @@ function App() {
     setModalOpen(false);
   };
 
+  //Scroll to top:
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+  if (scrollTopBtn)
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0 });
+    });
+
   return (
     <>
       <Start />
@@ -161,8 +168,10 @@ function App() {
           onClose={handleModalClose}
         />
       )}
-
       <Orders orders={orders} getOrderImage={getOrderImage} />
+      <button id="scrollTopBtn" className="hidden" aria-label="Наверх">
+        ↑
+      </button>
     </>
   );
 }
